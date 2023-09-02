@@ -25,7 +25,8 @@ public class RestApiHelper {
                 .when()
                 .post(path)
                 .then()
-                .statusCode(200);
+                .statusCode(200)
+                .statusCode(400);
     }
 
 }
