@@ -67,7 +67,7 @@ java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifac
 ```
 
 
-8. Остановить контейнеры командой CTRL + C и после удалить контейнеры командой
+5. Остановить контейнеры командой CTRL + C и после удалить контейнеры командой
 
 ```
 docker-compose down
