@@ -12,10 +12,10 @@ import java.sql.SQLException;
 public class SQLHelper {
 
     static String url = System.getProperty("db.url");//"jdbc:mysql://localhost:3306/app";//
-    static String userName = System.getProperty("db.user");// пользователь "app";//
-    static String password = System.getProperty("db.password");// пароль "pass";//
+    static String userName = System.getProperty("db.user");// "app";//
+    static String password = System.getProperty("db.password");// "pass";//
 
-   private static QueryRunner runner = new QueryRunner();
+    static QueryRunner runner = new QueryRunner();
 
     public SQLHelper() {
 
@@ -23,33 +23,38 @@ public class SQLHelper {
 
     @SneakyThrows
     private static Connection getConn() {
-        return DriverManager.getConnection(url, userName, password);
+        return DriverManager.getConnection(url = "jdbc:mysql://localhost:3306/app", userName =
+                "app", password = "pass");
     }
 
     @SneakyThrows
     public static DataHelper.CreditCardData getCreditCardData() {
         var cardDataSQL = "SELECT * FROM credit_request_entity ORDER BY created DESC LIMIT 1";
         var conn = getConn();
-        var result = runner.query(conn, cardDataSQL,
-                    new BeanHandler<>(DataHelper.CreditCardData.class));
-            return result;
+        DataHelper.CreditCardData result;
+        result = runner.query(conn, cardDataSQL,
+                new BeanHandler<>(DataHelper.CreditCardData.class));
+        return result;
     }
 
     @SneakyThrows
     public static DataHelper.PaymentCardData getPaymentCardData() {
         var cardDataSQL = "SELECT * FROM payment_entity ORDER BY created DESC LIMIT 1";
         var conn = getConn();
-        var result = runner.query(conn, cardDataSQL,
-                    new BeanHandler<>(DataHelper.PaymentCardData.class));
-            return result;
+        DataHelper.PaymentCardData result;
+        result = runner.query(conn, cardDataSQL,
+                new BeanHandler<>(DataHelper.PaymentCardData.class));
+        return result;
     }
 
+    @SneakyThrows
     public static DataHelper.TableOrderEntity getTableOrderEntity() throws SQLException {
         var orderEntityDataSQL = "SELECT * FROM order_entity ORDER BY created DESC LIMIT 1";
         var conn = getConn();
-        var result = runner.query(conn, orderEntityDataSQL,
-                    new BeanHandler<>(DataHelper.TableOrderEntity.class));
-            return result;
+        DataHelper.TableOrderEntity result;
+        result = runner.query(conn, orderEntityDataSQL,
+                new BeanHandler<>(DataHelper.TableOrderEntity.class));
+        return result;
     }
 
     @SneakyThrows
@@ -60,3 +65,4 @@ public class SQLHelper {
         runner.execute(conn, "DELETE FROM credit_request_entity");
     }
 }
+

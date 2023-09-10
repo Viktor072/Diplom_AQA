@@ -66,17 +66,6 @@ java "-Dspring.datasource.url=jdbc:postgresql://localhost:5432/app" -jar artifac
 ./gradlew test "-Ddb.url=jdbc:postgresql://localhost:5432/app" "-Ddb.username=app" "-Ddb.password=pass"
 ```
 
-5. Сформировать отчет Allure
-
-```
-.\gradlew allureReport
-```
-
-6. Вывести отчет Allure
-
-```
-.\gradlew allureServe
-```
 
 8. Остановить контейнеры командой CTRL + C и после удалить контейнеры командой
 
